@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <agenda>
+  <name>
+    Повестка
+  </name>
+  <date>
+    11 мая 1997
+  </date>
   <question>
     <title>
       Вопрос дня
     </title>
     <image>
       <title>Материал</title>
-      <width>142</width>
-      <height>18</height>
       <url>http://grandison.github.com/data1.jpg</url>
     </image>
   </question>
