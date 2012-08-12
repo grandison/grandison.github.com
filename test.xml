@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <agenda>
-	<question>
-		<title>
-			 Test
-		</title>
-		<image><title>Yahoo! Weather</title>
-<width>142</width>
-<height>18</height>
-<link>http://weather.yahoo.com</link>
-<url>http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif</url>
-		</image>
-	</question>
+  <question>
+    <title>
+      Вопрос дня
+    </title>
+    <image>
+      <title>Материал</title>
+      <width>142</width>
+      <height>18</height>
+      <url>http://grandison.github.com/data1.jpg</url>
+    </image>
+  </question>
 
 
-	<question>
-	</question>
+  <question>
+  </question>
 </agenda>
