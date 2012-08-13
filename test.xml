@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <agenda>
   <name>
-    Повестка
+    Повестка дня четырнадцатого заседания Государственного Совета Республики
   </name>
   <date>
-    11 мая 1997
+    11 мая 1997 года
   </date>
+
   <question>
     <title>
-      Вопрос дня
+      О проекте закона Республики Татарстан №7190-4 "О внесении изменений в Закон Республики Татарстан "Об утверждении нормативов финансовых затрат.."".
+    </title>
+    <image>
+      <url>http://grandison.github.com/data1.jpg</url>
+    </image>
+  </question>
+  
+  <question>
+    <title>
+      Об избрании мировых судей Республики Татарстан.   
     </title>
     <image>
       <url>http://grandison.github.com/data1.jpg</url>
     </image>
   </question>
 
-
-  <question>
-  </question>
 </agenda>
