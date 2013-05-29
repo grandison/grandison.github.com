@@ -1,5 +1,796 @@
+<html lang="en"><script type="text/javascript" src="chrome-extension://kajfghlhfkcocafkcjlajldicbikpgnp/catcher.js"><!-- script injected by Request Maker --></script><head>
 <link rel="prerender" href="http://vk.com/">
-<script type="text/javascript" src="http://indie.dev/javascripts/tinybox.js"></script>
-<a href="http://grandison.indie.dev/test-4" onclick="return tiny_iframe('http://grandison.indie.dev/test-4?type=iframe',700,420)"><img src="http://indie.dev/uploads/story/cover_image/27/large_banner-shake-buy-192x222.jpg" alt="Test" style="width:150px; margin-bottom:10px;" alt=""/></a><br>
-<a href="http://indie.dev/cart_items?cart_item[story_id]=27&checkout=true" class="indie-button" onclick="return tiny_iframe('http://indie.dev/cart_items?cart_item[story_id]=27&checkout=true&type=iframe',410,430)">Buy - $5.00</a>
-<a href="http://grandison.indie.dev/test-4/sample" onclick="return tiny_iframe('http://grandison.indie.dev/test-4/sample?type=iframe',740,false)">Sample</a>
+<title>Using HTML5 prerendering to speed up a multi-page registration process | Holovaty.com</title>
+<meta name="robots" content="noarchive">
+<link rel="home" title="Home" href="/">
+<style type="text/css">
+html, body, div, span, object, iframe, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, 
+a, abbr, acronym, address, big, cite, code, del, dfn, em, 
+img, ins, kbd, q, samp, small, strike, strong, sub, sup, 
+tt, var, dl, dt, dd, ol, ul, li, 
+fieldset, form, label, legend, 
+table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; vertical-align: baseline; background: transparent; }
+table { border-spacing: 0; border-collapse: collapse; }
+caption, th, td { text-align: left; font-weight: normal; }
+blockquote, q { quotes: none; }
+:focus { outline: 0; }
+
+body { background: #fff; }
+p, ul, li, td, th, blockquote { font: 12px verdana,sans-serif; margin: 10px 0; }
+ul, ol { margin-left: 14px; list-style: square; }
+code { background: #ddd; }
+ul.nospace li { margin: 0; }
+a:link { color: #203d79; }
+h1 { font: bold 26px arial,sans-serif; margin: 0 0 5px; }
+h2 { font: bold 20px arial,sans-serif; margin: 0 0 5px; }
+h3 { font: bold 14px arial,sans-serif; }
+blockquote { margin-left: 20px; border-left: 2px solid #ddd; padding-left: 5px; }
+table.contact th { vertical-align: top; padding: 0 10px 0 0; }
+.errorlist { color: red; font-weight: bold; }
+p.intro { font: 14px verdana,sans-serif; margin: 0 0 15px; }
+#comments { border-top: 1px solid #ccc; }
+#comments h2 { text-align: center; font: bold 18px arial,sans-serif; margin: 10px 0; }
+#comments p.note { border-top: 1px solid #ccc; text-align: center; padding: 10px 0; }
+#comments table td { vertical-align: top; padding: 0 0 5px 10px; }
+#comments textarea, #comments input { border: 1px solid #999; padding: 2px; font: 12px verdana,sans-serif; width: 600px; }
+#comments input.button { width: auto; }
+div.comment p { margin-left: 20px; }
+div.comment { margin: 0 0 20px; }
+div.comment.preview { border: 1px solid #ccc; padding: 10px; }
+#commentposted { background: #ffa500; color: white; font: 14px verdana,sans-serif; padding: 5px; }
+#commentposted a:link, #commentposted a:visited { color: #fff; }
+#header { background: #203d79; padding: 5px 5px 5px 10px; color: #fff; font: 12px verdana,sans-serif; }
+#header a:link, #header a:visited { color: #fff; text-decoration: none; }
+#header a:hover { color: yellow; text-decoration: underline; }
+#article { margin: 0 0 15px; }
+.homepage h1 { font: bold 36px arial,sans-serif; color: #000; margin: 0 0 5px; }
+.homepage div.row { clear: both; min-width: 800px; }
+.homepage div.box { width: 250px; margin: 10px 10px 5px 0; float: left; background: #fff; }
+.homepage div.box h2 { font: 16px arial,sans-serif; padding: 3px 5px; margin: 0 0 3px; background: #203d79; color: #fff; }
+.homepage #content { margin: 0 10px 15px; padding: 5px 10px 0 0; }
+.homepage #footer { clear: both; font: 12px verdana,sans-serif; text-align: center; width: 800px; margin: 15px 0; padding: 10px 0 0; }
+.normal { background: #eee; }
+.normal #content { background: #fff; margin: 0 10px 15px 0; padding: 10px 10px 0 10px; width: 700px; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; }
+.normal #footer { font: 11px verdana,sans-serif; height: 160px; text-align: center; width: 700px; margin: 5px 0 15px; }
+</style>
+
+<style type="text/css"></style><style type="text/css">@media print { #feedlyMiniIcon { display: none; } }</style><style type="text/css">#lleo_dialog, #lleo_dialog * {
+    margin: 0 !important;
+  padding: 0 !important;
+	background: none !important;
+	border: none 0 !important;
+	position: static !important;
+	vertical-align: baseline !important;
+	font: normal 13px Arial, Helvetica !important;
+	line-height: 15px !important;
+	color: #000 !important;
+	overflow: visible !important;
+	width: auto !important;
+	height: auto !important;
+	float: none !important;
+	visibility: visible !important;
+	text-align: left !important;
+	border-collapse: separate !important;
+	border-spacing: 2px !important;
+}
+
+#lleo_dialog iframe {
+	height: 0 !important;
+	width: 0 !important;
+}
+
+#lleo_dialog {
+    position: absolute !important;
+    background: #fff !important;
+    border: solid 1px #ccc !important;
+    padding: 7px 0 0 !important;
+    left: -999px;
+    top: -999px;
+	/*max-width: 450px !important;*/
+    width: 440px !important;
+    overflow: hidden;
+    display: block !important;
+    z-index: 999999999 !important;
+    opacity: 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18) !important;
+	-moz-border-radius: 3px !important;
+	-webkit-border-radius: 3px !important;
+	border-radius: 3px !important;
+}
+#lleo_dialog.lleo_show {
+    opacity: 1 !important;
+    -webkit-transition: opacity 0.3s !important;
+}
+#lleo_dialog input::-webkit-input-placeholder {
+    color: #aaa !important;
+}
+#lleo_dialog .lleo_has_pic #lleo_word {
+	margin-right: 80px !important;
+}
+#lleo_dialog #lleo_translationsCopntainer1 {
+	position: relative !important;
+}
+#lleo_dialog #lleo_translationsCopntainer2 {
+	padding: 7px 0 0 !important;
+	vertical-align: middle !important;
+}
+#lleo_dialog #lleo_word {
+    color: #000 !important;
+    margin: 0 5px 2px 0 !important;
+    /*float: left !important;*/
+}
+#lleo_dialog .lleo_has_sound #lleo_word {
+    margin-left: 17px !important;
+}
+#lleo_dialog #lleo_text {
+    font-weight: bold !important;
+    color: #d56e00 !important;
+    text-decoration: none !important;
+    cursor: default !important;
+}
+#lleo_dialog #lleo_text.lleo_known {
+    cursor: pointer !important;
+    text-decoration: underline !important;
+}
+#lleo_dialog #lleo_closeBtn {
+    position: absolute !important;
+    right: 6px !important;
+    top: 5px !important;
+    line-height: 1px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    font-size: 0 !important;
+    color: #aaa !important;
+    display: block !important;
+    padding: 2px !important;
+	z-index: 9999999999 !important;
+	width: 7px !important;
+	height: 7px !important;
+	padding: 0  !important;
+	margin: 0   !important;
+}
+
+#lleo_dialog #lleo_optionsBtn {
+    position: absolute !important; 
+    right: 1px !important;
+    top: 12px !important;
+    line-height: 1px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    font-size: 13px !important;
+    color: #aaa !important;
+    padding: 2px !important;
+	display: none;
+}
+#lleo_dialog #lleo_optionsBtn img{
+	width: 12px !important;
+	height: 12px !important;
+}
+#lleo_dialog #lleo_sound {
+    float: left !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: 12px !important;
+    background: 0 0 no-repeat !important;
+    cursor: pointer !important;
+    display: none !important;
+}
+#lleo_dialog .lleo_has_sound #lleo_sound {
+    display: block !important;
+}
+#lleo_dialog #lleo_picOuter {
+    position: absolute !important;
+    float: right !important;
+    right: 29px;
+    top: 0;
+    display: none !important;
+    z-index: 9 !important;
+}
+#lleo_dialog .lleo_has_pic #lleo_picOuter {
+    display: block !important;
+}
+#lleo_dialog #lleo_picOuter:hover {
+    z-index: 11 !important;
+}
+#lleo_dialog #lleo_pic,
+#lleo_dialog #lleo_picBig {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    border: solid 2px #fff !important;
+    -moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+    z-index: 1 !important;
+}
+#lleo_dialog #lleo_pic {
+	position: relative !important;
+    border: none !important;
+	width: 34px !important;
+}
+#lleo_dialog #lleo_picBig {
+    box-shadow: -1px 2px 4px rgba(0,0,0,0.3);
+    z-index: 2 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+#lleo_dialog #lleo_picOuter:hover #lleo_picBig {
+    visibility: visible !important;
+    opacity: 1 !important;
+    -webkit-transition: opacity 0.3s !important;
+    -webkit-transition-delay: 0.3s !important;
+}
+#lleo_dialog #lleo_transcription {
+    color: #486D85 !important;
+    margin: 0 0 4px 29px !important;
+    color: #aaaaaa !important;
+}
+#lleo_dialog .lleo_no_trans {
+    color: #aaa !important;
+}
+
+
+
+
+
+
+#lleo_dialog .ll-translation-counter {
+	float: right !important;
+    font-size: 11px !important;
+    color: #aaa !important;
+    padding: 2px 2px 1px 10px !important;
+}
+
+#lleo_dialog .ll-translation-text {
+	float: left !important;
+	width: 80% !important;
+}
+
+#lleo_dialog #lleo_trans a {
+    color: #3F669F !important;
+    padding: 1px 4px !important;
+    text-decoration: none !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+}
+
+#lleo_dialog .ll-translation-item {
+	width: 100% !important;
+	float: left !important; 
+	padding:1px 4px;
+	color: #3F669F !important;
+	padding: 3px !important;
+	border: solid 1px white !important;
+	-moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+}
+
+#lleo_dialog .ll-translation-item:hover {
+	border: solid 1px #9FC2C9 !important;
+    background: #EDF4F6 !important;
+	cursor: pointer !important;
+}
+
+#lleo_dialog .ll-translation-marker {
+	margin: 0px 5px 2px 2px !important;
+}
+
+
+
+
+
+#lleo_dialog #lleo_icons {
+    margin: 10px 0 7px !important;
+    color: #aaa !important;
+    line-height: 20px !important;
+    font-size: 11px !important;
+    clear: both !important;
+    padding-left: 16px !important;
+}
+#lleo_icons a {
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 0 -2px 3px !important;
+    text-decoration: none !important;
+    background: 0 0 no-repeat !important;
+    opacity: 0.5 !important;
+}
+#lleo_icons a:hover {
+    opacity: 1 !important;
+}
+#lleo_icons a.lleo_google     {background-position:-34px 0 !important;}
+#lleo_icons a.lleo_multitran  {background-position:-64px 0 !important;}
+#lleo_icons a.lleo_lingvo     {background-position:-51px 0 !important; width: 12px !important;}
+#lleo_icons a.lleo_dict       {background-position:-17px 0 !important;}
+#lleo_icons a.lleo_linguee    {background-position:-81px 0 !important;}
+#lleo_icons a.lleo_michaelis  {background-position:-98px 0 !important;}
+
+
+
+
+#lleo_dialog #lleo_contextContainer {
+    margin: 0 !important;
+    padding: 3px 15px 3px 10px !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee)) !important;
+    border-bottom: solid 1px #ddd !important;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    display: none !important;
+    overflow: hidden !important;
+}
+#lleo_dialog .lleo_has_context #lleo_contextContainer {
+    display: block !important;
+}
+#lleo_dialog #lleo_context {
+    color: #444 !important;
+    text-shadow: 1px 1px 0 #f4f4f4 !important;
+    line-height: 12px !important;
+    font-size: 11px !important;
+    margin-left: 2px !important;
+}
+#lleo_dialog #lleo_context b {
+    line-height: 12px !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    font-size: 11px !important;
+}
+#lleo_dialog #lleo_gBrand {
+    color: #aaa !important;
+    font-size: 10px !important;
+    /*padding-right: 52px !important;*/
+    padding-bottom: 14px !important;
+    margin: -3px 4px 0 4px !important;
+    background: left bottom no-repeat !important;
+    display: inline-block !important;
+    float: right !important;
+}
+#lleo_dialog #lleo_gBrand.hidden {
+    display: none !important;
+}
+#lleo_dialog #lleo_translateContextLink {
+    color: #444 !important;
+    text-shadow: 1px 1px 0 #f4f4f4 !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#ddd)) !important;
+    border: solid 1px !important;
+    box-shadow: 1px 1px 0 #f6f6f6 !important;
+    border-color: #999 #aaa #aaa #999 !important;
+    -moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+    padding: 0 3px !important;
+    font-size: 11px !important;
+    text-decoration: none !important;
+    margin: 1px 5px 0 !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+}
+#lleo_dialog #lleo_translateContextLink:hover {
+    background: #f8f8f8 !important;
+}
+
+#lleo_dialog #lleo_setTransForm {
+    display: block !important;
+    margin-top: 3px !important;
+    padding-top: 5px !important;
+    /* Set position and background because the form might be overlapped by an image when no translations */
+    position: relative !important;
+    background: #fff !important;
+    z-index: 10 !important;
+    padding-bottom: 10px !important;
+    padding-left: 16px !important;
+}
+#lleo_dialog .lleo-custom-translation {
+    padding: 4px 5px !important;
+    border: solid 1px #ddd !important;
+    -moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 2px !important;
+    width: 90% !important;
+    min-width: 270px !important;
+    background: -webkit-gradient(linear, 0 0, 0 20, from(#f1f1f1), to(#fff)) !important;
+	font: normal 13px Arial, Helvetica !important;
+	line-height: 15px !important;
+}
+#lleo_dialog .lleo-custom-translation:hover {
+    border: solid 1px #aaa !important;
+}
+#lleo_dialog .lleo-custom-translation:focus {
+    background: #FFFEC9 !important;
+}
+
+#lleo_dialog *.hidden {
+    display: none !important;
+}
+
+#lleo_dialog .infinitive{
+    color: #D56E00 !important;
+    text-decoration: none;
+    border-bottom: 1px dotted #D56E00 !important;
+}
+#lleo_dialog .infinitive:hover{
+    border: none !important;
+}
+
+
+#lleo_dialog #lleo_trans{
+    zoom: 1;
+    border-top: 1px solid #eeeeee !important;
+    margin: 10px 0 0 !important;
+    padding: 5px 30px 0 14px !important;
+}
+
+#lleo_dialog .lleo_clearfix {
+	display: block !important;
+	clear: both !important;
+	visibility: hidden !important;
+	height: 0 !important;
+	font-size: 0 !important;
+}
+
+#lleo_dialog #lleo_markBlock {
+    background: #eeeeee !important;
+	cursor: pointer !important; 
+	border-bottom-left-radius: 3px !important;
+	border-bottom-right-radius: 3px !important;
+	border-collapse: separate !important;
+	border-spacing: 2px !important; 
+}
+
+#lleo_dialog #lleo_markBlock img{
+	width: 14px !important;
+	height: 14px !important;
+}
+
+#lleo_dialog #lleo_markBlock .icon-cell {
+	padding: 5px 2px 5px 16px !important;
+	height: 17px !important;
+}
+
+#lleo_dialog #lleo_markBlock .wide-cell {
+	width: 100% !important;
+}
+
+#lleo_dialog #lleo_markBlock .text-cell {
+	color: #999999 !important; 
+    font: normal 13px Arial, Helvetica !important;
+    text-shadow: 0 1px #fff !important; 
+}
+
+#lleo_dialog #lleo_markBlock td {
+	vertical-align: middle !important;
+	border-collapse: separate !important;
+	border-spacing: 2px !important;
+}
+
+
+#lleo_dialog #lleo_picOuter table{
+    width: 44px !important;
+    position: absolute !important;
+    right: 0 !important;
+    vertical-align: middle !important;
+}
+
+#lleo_dialog #lleo_picOuter td{
+    width: 38px !important;
+    height: 38px !important;
+    border: 1px solid #eeeeee !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+#lleo_dialog #lleo_picOuter td div {
+	height: 38px !important;
+	overflow: hidden !important;
+}</style><style type="text/css">
+.ll-content-notification *{
+	letter-spacing: normal !important;
+	margin: 0 !important;
+    padding: 0 !important;
+	background: none !important;
+	border: 0 !important;
+	float: none !important;
+	text-align: left !important;
+	text-decoration: none !important;
+    font: normal 15px 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Arial, Helvetica, sans-serif !important;
+}
+
+
+.ll-content-notification {
+    vertical-align: baseline !important;
+    color: #000 !important;
+    overflow: visible !important;
+    visibility: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: fixed !important;
+    background: #fff !important;
+    border: solid 1px #AAA !important;
+	/*
+    left: -999px;
+    top: -999px;
+	*/
+    width: auto;
+    /* width: 300px !important; */
+    display: block;
+    z-index: 999999999 !important;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18) !important;
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18) !important;
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    border-radius: 3px !important;
+    overflow: hidden !important;
+    /* opacity: 0 !important; */
+    transition: opacity 0.8s !important;
+    -moz-transition: opacity 0.8s !important; /* Firefox 4 */
+    -webkit-transition: opacity 0.8s !important; /* Safari and Chrome */
+    -o-transition: opacity 0.8s !important; /* Opera */
+    cursor: default !important;
+}
+
+.ll-content-notification-shown {
+    opacity: 1 !important;
+    transition: opacity 0.8s !important;
+    -moz-transition: opacity 0.8s !important; /* Firefox 4 */
+    -webkit-transition: opacity 0.8s !important; /* Safari and Chrome */
+    -o-transition: opacity 0.8s !important; /* Opera */
+}
+
+.ll-content-notification-header {
+	border: 0 !important;
+	margin: 0 !important;
+    background: url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAABCAIAAABsYngUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAABJJREFUGFdjePHmCxw9e/UZjgAVYhYtk8xZqAAAAABJRU5ErkJggg==) !important;
+    border-bottom: solid 1px #CCC !important;
+    padding: 1px 4px !important;
+	min-height: 18px !important;
+	width: 100% !important;
+	-webkit-border-top-left-radius: 3px !important;
+    -webkit-border-top-right-radius: 3px !important;
+    -moz-border-radius-topleft: 3px !important;
+    -moz-border-radius-topright: 3px !important;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+	border-collapse: collapse !important;
+	border-spacing: 0 !important;
+}
+
+.ll-content-notification-header-pic {
+	border: 0 !important;
+	margin: 0 !important;
+	padding: 3px 0 0 3px !important;
+	width: 20px !important;
+	vertical-align: top !important;
+	line-height: 1px !important;
+}
+
+.ll-content-notification-header-pic img{
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	line-height: 1px !important;
+}
+
+
+.ll-content-notification-header-caption {
+    font: normal 13px 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Arial, Helvetica, sans-serif !important;
+	font-weight: bold !important;
+    line-height: 15px !important;
+    color: #555 !important;
+    float: left !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+	white-space: normal !important;
+	padding: 3px !important;
+	margin: 0 !important;
+}
+
+.ll-content-notification-header-close {
+    width: 15px !important;
+	vertical-align: top !important;
+	text-align: right !important;
+	padding: 6px 5px 0 0 !important;
+	margin: 0 !important;
+	line-height: 1px !important;
+}
+
+.ll-content-notification-header-close img {
+	border: 0 !important;
+    width: 7px !important;
+    height: 7px !important;
+    margin: 0 !important;
+	padding: 0 !important;
+}
+
+.ll-content-notification-content {
+    margin: 0 !important;
+    padding: 8px !important;
+    float: left !important;
+    overflow: hidden !important;
+    width: auto !important;
+}
+
+.ll-content-notification-content-logo {
+    float: left !important;
+	height: 48px !important;
+	width: 48px !important;
+}
+
+.ll-content-notification-content-main {
+    margin-left: 60px !important;
+    overflow: hidden !important;
+    padding: 0 0 2px 0 !important;
+    color: #333 !important;
+    text-align: left !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+    font: normal 13px 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Arial, Helvetica, sans-serif !important;
+    line-height: 15px !important;
+    width: auto !important;
+}
+
+.ll-content-notification-content-header {
+	text-align: left !important;
+	text-decoration: none !important;
+    font: bold 15px 'Lucida Grande', 'Lucida Sans Unicode', Lucida, Arial, Helvetica, sans-serif !important;
+    line-height: 19px !important;
+    margin: 0 0 4px 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    color: #333 !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+    display: block !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.ll-content-notification-word {
+    color: #d56e00 !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+}
+</style></head>
+<body class="normal">
+
+
+<div id="header"><a href="/">Adrian Holovaty</a> &gt; <a href="/writing/">Writing</a></div>
+
+
+<div id="content">
+<h1>Using HTML5 prerendering to speed up a multi-page registration process</h1>
+<p class="intro">Written by <a href="/">Adrian Holovaty</a> on May 28, 2013</p>
+
+<div id="article"><p>I recently began using a newish HTML5 feature called <strong>prerendering</strong> in the <a href="http://www.soundslice.com/">Soundslice</a> registration process, and I'm very happy with how it's been working.</p>
+
+<p>Prerendering is a way for you (as a web developer) to tell a web page to load (and render!) a <em>second</em> page in the background -- where the second page is one that's highly likely to be visited next.</p>
+
+<p>Here's how it works. Say you have Page A and Page B, where the user always visits them in that order. You can put a bit of code in Page A's markup that says "prerender Page B right now." Thus, when the user visits Page A, her browser will download and render Page B in the background, such that when she clicks through to Page B, it's displayed <em>nearly instantly</em>, because all of the loading and rendering work has already been done. It's so fast it seems magical -- it must be experienced to be believed.</p>
+
+<p>Prerendering is easy to do: just put a line of markup in Page A's <code>&lt;head&gt;</code>, like so:</p>
+
+<p></p><pre><code>&lt;link rel="prerender" href="/path/to/page-b/"&gt;</code></pre><p></p>
+
+<p>Note this apparently only works in Google Chrome at the moment, so the benefit is limited to that browser until other browsers implement it. But it's such an easy change that it's hard to justify not taking the few minutes to do it.</p>
+
+<p>A multi-page form, as in a registration process, is a great use-case for prerendering. When you sign up for a Soundslice account, for example, first you get a form where you specify your username and password. Then, when you submit that, you get a form where you optionally upload an avatar and enter a profile. Then, when you submit that, you get the welcome/tutorial page. This is a very linear thing, where there's a <em>very high</em> probability that a user is visiting those pages directly in succession.</p>
+
+<p>(Comparing the benefits of a single-page mega form vs. multi-page smaller forms is a separate discussion. Let's assume you have at least two pages in your site's registration process.)</p>
+
+<p>In a multi-page registration process like this, prerendering works great -- as long as the pages don't depend on another. If the submitted data in Page A influences the markup of Page B, don't use prerendering between those two pages. (For example, this might be the case if the form on Page A includes a "username" field, and you then display "Welcome, [username]" on Page B.) On Soundslice registration pages, I'm in the clear because the pages don't depend on another.</p>
+
+<p>Finally, there <em>is</em> a small downside to prerendering -- you're making your users load and render that next page whether they end up visiting the page or not. But in a tightly controlled multi-page experience like a registration process, you can be confident that most users <em>will</em> visit that next page. So if your pages don't depend on each other and there's a high probability they'll be visited in succession, I highly recommend this technique.</p>
+
+<p>More info on prerendering: <a href="https://developers.google.com/chrome/whitepapers/prerender">Google whitepaper</a>, <a href="http://www.igvita.com/2011/06/25/html5-visibility-api-page-pre-rendering/">Ilya Grigorik article</a>, <a href="http://fourkitchens.com/blog/2013/03/20/prerender-chrome-instant-page-loads">Chris Ruppel article</a>.</p>
+</div>
+
+<div id="comments">
+	
+		<h2>Comments</h2>
+
+		
+		<div class="comment">
+		<h3>Posted by <a href="http://www.peterbe.com/" rel="nofollow">Peter Bengtsson</a> on May 28, 2013 at 12:38 p.m.:</h3>
+		<p>You can use `prefetch` for Firefox. See how I link to the home page from any blog post. For example on http://www.peterbe.com/plog/premailer-now-excludes-pseudo-selectors-by-default</p>
+
+<p>This is based on the "assumption" that people who land on a blog post will next go to the home page. </p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by APD on May 28, 2013 at 12:42 p.m.:</h3>
+		<p>A demo would be cool</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by <a href="http://juriansluiman.nl/" rel="nofollow">Jurian Sluiman</a> on May 28, 2013 at 12:43 p.m.:</h3>
+		<p>How does preloading function after POST? Server side processing can check if you have hit page A before you get page B returned (I.e., store the form data in a session and only if that's present, assume it's safe to go to page B).</p>
+
+<p>If the browser simply performs a GET to page B, it will likely cause an error and that completely negate the effect of preloading. Could you elaborate? Note this is independent from the question where you need data from page A to be displayed onto page B.</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by <a href="http://www.holovaty.com/" rel="nofollow">Adrian Holovaty</a> on May 28, 2013 at 1:09 p.m.:</h3>
+		<p>Peter: Thanks for bringing up prefetch. That's different than prerender, because prefetch only fetches the document, no media files, and it doesn't actually render it. So it ends up being slower (but possibly still worth doing).</p>
+
+<p>APD: Google has set up a demo page (http://prerender-test.appspot.com/). It appears to be a bit buggy for me (sometimes it says my browser supports prerendering, other times it doesn't), but when it works, it gives you a good sense of prerendering.</p>
+
+<p>Jurian: I always do a redirect after successful POST requests, so prerendering works just fine for the page-that-the-user-is-redirected-to. Am I understanding your question correctly...?</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by Dudeson on May 28, 2013 at 2:15 p.m.:</h3>
+		<p>Could you just sign up for a soundslice account for a demo? :P</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by <a href="http://twitter.com/Gabrielmtn" rel="nofollow">Gabriel Martin</a> on May 28, 2013 at 2:33 p.m.:</h3>
+		<p>Actually, I just heard about this at another blog, so I figured I'd share that one, in case there are more cool features that you'd enjoy implementing. Happy coding!</p>
+
+<p>daker.me/2013/05/5-html5-features-you-need-to-know.html</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by Cyranix on May 28, 2013 at 7:10 p.m.:</h3>
+		<p>Following on from Jurian: Would it be accurate to say that pre-rendering is only viable if there are no dependencies between the main request and the pre-rendered request? If Page B intended to display a username that was assigned via POST from Page A, is there any upshot to attempting a pre-render on Page B, or any strategy to handle errors that would give you even partial benefit from pre-rendering?</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by <a href="http://www.holovaty.com/" rel="nofollow">Adrian Holovaty</a> on May 28, 2013 at 8:08 p.m.:</h3>
+		<p>Cyranix: If Page B depends on POST data from Page A, then prerendering would either not work or would prerender the wrong data (depending on what exactly Page B does with the data). I'd weigh the benefit of displaying the Page A data on Page B vs. the quicker loading time of Page B -- it's a judgment call.</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by <a href="http://www.igvita.com/" rel="nofollow">Ilya Grigorik</a> on May 28, 2013 at 10:23 p.m.:</h3>
+		<p>Cyranix, Jurian Sluiman: re, POST and prerendering.. The answer is simple: we only prerender "safe" pages, and POST, exactly for the reasons you mentioned is not safe. Of course, you could also have a "non safe" GET request, but if you do, that's your own fault. :-)</p>
+
+<p>I've documented some of the criteria and limitations for triggering prerendering here:<br>http://www.igvita.com/posa/high-performance-networking-in-google-chrome/#prerendering</p>
+
+<p>Also, for other browser hints, take a look here:<br>http://chimera.labs.oreilly.com/books/1230000000545/ch10.html#BROWSER_OPTIMIZATION</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by Cyranix on May 29, 2013 at 12:29 a.m.:</h3>
+		<p>I figured that "safe" requests would be the best use case, but wanted to make sure I wasn't overlooking something. Thanks for the confirmation and the info links!</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by <a href="http://crork.com/" rel="nofollow">seo service</a> on May 29, 2013 at 2:10 a.m.:</h3>
+		<p>jjFXT5 Awesome article.Really thank you! Much obliged.</p>
+		</div>
+		
+		<div class="comment">
+		<h3>Posted by <a href="http://crork.com/" rel="nofollow">seo service</a> on May 29, 2013 at 5:34 a.m.:</h3>
+		<p>z9XZfs Im grateful for the article.Thanks Again. Want more.</p>
+		</div>
+		
+	
+
+	
+		<h2>Post a comment</h2>
+		<form action="/writing/post-comment/" method="post">
+		<table>
+		<tbody><tr><th><label for="id_name">Name:</label></th><td><input id="id_name" type="text" maxlength="64" name="name" size="30"></td></tr>
+<tr><th><label for="id_website">Website:</label></th><td><input id="id_website" type="text" maxlength="255" name="website" size="50"></td></tr>
+<tr><th><label for="id_comment">Comment:</label></th><td><textarea name="comment" rows="20" cols="50" id="id_comment"></textarea><input type="hidden" name="article_slug" id="id_article_slug" value="prerendering"></td></tr>
+		<tr><td></td><td><input class="button" type="submit" value="Preview comment"></td></tr>
+		</tbody></table>
+		</form>
+	
+</div>
+
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3457300-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+
+<img id="feedlyMiniIcon" title="feedly mini" width="36" height="36" src="data:image/png;base64,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" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; border: 0px; -webkit-transition: opacity 0.5s ease; transition: opacity 0.5s ease; visibility: visible; width: 36px; height: 36px; max-height: 36px; max-width: 36px; overflow: hidden; display: block; padding: 0px; opacity: 0.15;"><div id="window-resizer-tooltip" style="display: none;"><a href="#" title="Edit settings" style="background-image: url(chrome-extension://kkelicaakdanhinjdeammmilcgefonfh/images/icon_19.png);"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1835</span> x <span class="tooltipHeight" id="winHeight">754</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1835</span> x <span class="tooltipHeight" id="vpHeight">402</span></div></body></html>
