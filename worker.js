@@ -1,3 +1,5 @@
 self.addEventListener('fetch', function(event) {
-console.log(event.request);
+var s = fetch(event.request);
+console.log(s);
+return s;
 });
