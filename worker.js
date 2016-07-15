@@ -1,5 +1,7 @@
 self.addEventListener('fetch', function(event) {
 var s = fetch(event.request);
-console.log(s);
+s.then(function(response){
+  console.log(response);
+})
 return s;
 });
